@@ -38,3 +38,5 @@ jobs:
             enableMultiArch: true
             addLatest: false
             pushImage: true
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
