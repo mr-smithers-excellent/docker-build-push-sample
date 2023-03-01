@@ -37,7 +37,7 @@ jobs:
         with:
           image: mrsmithers/docker-build-push-sample
           registry: docker.io
-          #platform: linux/amd64,linux/arm64,linux/arm/v7
+          platform: linux/amd64,linux/arm64,linux/arm/v7
           multiPlatform: true
           addLatest: false
           pushImage: true
