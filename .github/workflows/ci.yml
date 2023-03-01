@@ -22,24 +22,24 @@ jobs:
           addLatest: true
           pushImage: false
 
-    build-multi-platform:
-      name: Build multi-platform image
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-          name: Check out code
+  build-multi-platform:
+    name: Build multi-platform image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Check out code
 
-        - uses: docker/setup-buildx-action@v2
-          name: Set up Docker buildx
+      - uses: docker/setup-buildx-action@v2
+        name: Set up Docker buildx
 
-        - uses: mr-smithers-excellent/docker-build-push@buildx
-          name: Build & push Docker image
-          with:
-            image: mrsmithers/docker-build-push-sample
-            registry: docker.io
-            platform: linux/amd64,linux/arm64,linux/arm/v7
-            enableMultiArch: true
-            addLatest: false
-            pushImage: true
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: mr-smithers-excellent/docker-build-push@buildx
+        name: Build & push Docker image
+        with:
+          image: mrsmithers/docker-build-push-sample
+          registry: docker.io
+          #platform: linux/amd64,linux/arm64,linux/arm/v7
+          multiPlatform: true
+          addLatest: false
+          pushImage: true
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
