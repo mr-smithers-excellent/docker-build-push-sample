@@ -4,17 +4,33 @@ on:
     branches: main
 
 jobs:
-  ci-pipeline:
-    name: CI Pipeline
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        name: Check out code
+  # build-basic:
+  #   name: Build basic image without push
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       name: Check out code
 
-      - uses: mr-smithers-excellent/docker-build-push@master
-        name: Build & push Docker image
-        with:
-          image: mrsmithers/docker-build-push-sample
-          registry: docker.io
-          addLatest: true
-          pushImage: false
+  #     - uses: mr-smithers-excellent/docker-build-push@buildx
+  #       name: Build Docker image
+  #       with:
+  #         image: mrsmithers/docker-build-push-sample
+  #         registry: docker.io
+  #         addLatest: true
+  #         pushImage: false
+
+    build-multi-platform:
+      name: Build multi-platform image
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          name: Check out code
+
+        - uses: mr-smithers-excellent/docker-build-push@buildx
+          name: Build & push Docker image
+          with:
+            image: mrsmithers/docker-build-push-sample
+            registry: docker.io
+            platform: linux/amd64,linux/arm64,linux/arm/v7
+            addLatest: false
+            pushImage: false
