@@ -4,7 +4,7 @@ on:
     branches: main
 
 jobs:
-  build-linux:
+  build-basic:
     strategy:
       matrix:
         os: ['ubuntu-latest', 'mac-latest']
@@ -54,6 +54,7 @@ jobs:
           registry: docker.io
           platform: linux/amd64,linux/arm64,linux/arm/v7
           multiPlatform: true
+          overrideDriver: true
           addLatest: false
           pushImage: true
           username: ${{ secrets.DOCKER_USERNAME }}
