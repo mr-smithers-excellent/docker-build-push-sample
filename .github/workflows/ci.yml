@@ -4,18 +4,12 @@ on:
     branches: main
 
 jobs:
-  build-basic:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, mac-latest]
-    name: Build basic image without push
-    runs-on: ${{ matrix.os }}
+  build-linux:
+    name: Build basic Linux image
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         name: Check out code
-
-      # - uses: docker/setup-buildx-action@v2
-      #   name: Set up Docker buildx
 
       - uses: mr-smithers-excellent/docker-build-push@buildx
         name: Build Docker image
@@ -23,6 +17,21 @@ jobs:
           image: mrsmithers/docker-build-push-sample
           registry: docker.io
           addLatest: true
+          pushImage: false
+
+  build-windows:
+    name: Build basic Windows image
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Check out code
+
+      - uses: mr-smithers-excellent/docker-build-push@buildx
+        name: Build Docker image
+        with:
+          image: mrsmithers/docker-build-push-sample
+          registry: docker.io
+          dockerfile: Dockerfile.windows
           pushImage: false
 
   build-multi-platform:
