@@ -5,11 +5,8 @@ on:
 
 jobs:
   build-basic:
-    strategy:
-      matrix:
-        os: ['ubuntu-latest', 'mac-latest']
     name: Build basic image
-    runs-on: ${{ matrix.os }}
+    runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v3
         name: Check out code
@@ -44,9 +41,6 @@ jobs:
       - uses: actions/checkout@v3
         name: Check out code
 
-      - uses: docker/setup-buildx-action@v2
-        name: Set up Docker buildx
-
       - uses: mr-smithers-excellent/docker-build-push@buildx
         name: Build & push Docker image
         with:
@@ -54,7 +48,6 @@ jobs:
           registry: docker.io
           platform: linux/amd64,linux/arm64,linux/arm/v7
           multiPlatform: true
-          overrideDriver: true
           addLatest: false
           pushImage: true
           username: ${{ secrets.DOCKER_USERNAME }}
