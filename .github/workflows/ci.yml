@@ -5,8 +5,11 @@ on:
 
 jobs:
   build-linux:
-    name: Build basic Linux image
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'mac-latest']
+    name: Build basic image
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         name: Check out code
