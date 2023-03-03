@@ -5,8 +5,11 @@ on:
 
 jobs:
   build-basic:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     name: Build basic image without push
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         name: Check out code
