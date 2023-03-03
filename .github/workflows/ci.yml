@@ -7,7 +7,7 @@ jobs:
   build-basic:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, mac-latest]
     name: Build basic image without push
     runs-on: ${{ matrix.os }}
     steps:
