@@ -44,8 +44,8 @@ jobs:
       - uses: actions/checkout@v3
         name: Check out code
 
-      # - uses: docker/setup-buildx-action@v2
-      #   name: Set up Docker buildx
+      - uses: docker/setup-buildx-action@v2
+        name: Set up Docker buildx
 
       - uses: mr-smithers-excellent/docker-build-push@buildx
         name: Build & push Docker image
