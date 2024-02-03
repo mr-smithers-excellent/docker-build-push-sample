@@ -8,7 +8,7 @@ jobs:
     name: Build basic image
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Check out code
 
       - uses: mr-smithers-excellent/docker-build-push@v6
@@ -23,7 +23,7 @@ jobs:
     name: Build basic Windows image
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Check out code
 
       - uses: mr-smithers-excellent/docker-build-push@v6
@@ -38,7 +38,7 @@ jobs:
     name: Build multi-platform image
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Check out code
 
       - uses: mr-smithers-excellent/docker-build-push@v6
